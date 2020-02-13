@@ -1,4 +1,3 @@
-
 public class Recursividad {
 	
 	public static int buscar (int[] array, int dato){
