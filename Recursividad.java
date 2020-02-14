@@ -6,14 +6,14 @@ public class Recursividad {
 			System.out.print("* ");
 			i++;						
 		}	
-		if (i==array.length) {
+		if (i==array.length){
 			i=-1;
 		}
 		return i;		
 	}
 	
 	public static int buscarREC (int[] array, int dato, int i){	
-		System.out.print("* ");		
+		System.out.print("* ");
 		int pos = 0;
 		if (i==array.length) { //Caso llega al final sin encontrar
 			pos=-1;
@@ -29,9 +29,9 @@ public class Recursividad {
 
 	public static void main(String[] args) {
 		
-		int [] lista = {1,2,3,4,5,6,7,8,9,10};
-		System.out.println("Iterativa: " + buscar(lista,5));
-		System.out.println("Recursiva: " + buscarREC(lista,5,0));
+		int [] lista = {1,2,3,4,5,6,7,8,9,10};	
+		System.out.println("Iterativa: " + buscar(lista,8));
+		System.out.println("Recursiva: " + buscarREC(lista,8,0));
 
 	}
 
