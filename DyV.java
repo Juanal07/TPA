@@ -17,7 +17,7 @@ public class DyV {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] lista = {2,3,7,6,5,55,66,33,4};
+		int[] lista = {-1,4,-44,55};
 		System.out.println(maximo(lista,0,lista.length-1));
 	}
 
