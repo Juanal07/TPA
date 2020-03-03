@@ -15,33 +15,36 @@ public class Matrices {
 		}
 		return true;
 	}
-	
-	public static boolean sonIgualesDyV(int[][] m1, int[][] m2, int inii, int fini, int inij, int finj) {
-		int mitadi=(inii+fini)/2;
-		int mitadj=(inij+finj)/2;
-		
-		if (mitadi==1) {
-			if (m1[0][0]==m2[0][0]) {
+
+	public static boolean sonIgualesDyV4(int[][] m1, int[][] m2, int inix, int finx, int iniy, int finy) {
+
+		if (inix == finx) {
+			if (m1[inix][iniy] == m2[inix][iniy]) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
-		}else {
-			return sonIgualesDyV(m1, m2, inii, fini, inij, finj) &&
-					sonIgualesDyV(m1, m2, inii, fini, inij, finj) &&
-					sonIgualesDyV(m1, m2, inii, fini, inij, finj) &&
-					sonIgualesDyV(m1, m2, inii, fini, inij, finj);
-					
+		} else {
+			return sonIgualesDyV4(m1, m2, inix, (finx + inix) / 2, iniy, (finy + iniy) / 2)
+					&& sonIgualesDyV4(m1, m2, inix, (finx + inix) / 2, (finy + iniy) / 2 + 1, finy)
+					&& sonIgualesDyV4(m1, m2, (finx + inix) / 2 + 1, finx, iniy, (finy + iniy) / 2)
+					&& sonIgualesDyV4(m1, m2, (finx + inix) / 2 + 1, finx, (finy + iniy) / 2 + 1, finy);
+
 		}
-		
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[][] m1 = { { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 } };
-		int[][] m2 = { { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 } };
-		
-		System.out.println("¿Son iguales?: "+sonIguales(m1,m2));
+		int[][] m1 = { { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 },
+				{ 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 },
+				{ 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 } };
+		int[][] m2 = { { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 },
+				{ 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 },
+				{ 1, 2, 3, 4, 5, 6, 7, 8 }, { 1, 2, 3, 4, 5, 6, 7, 8 } };
+
+		System.out.println("Comparación iterativa: " + sonIguales(m1, m2));
+		System.out.println("Comparación DyV entre 4: " + sonIgualesDyV4(m1, m2, 0, 7, 0, 7));
+//		System.out.println("Comparación DyV entre 2: "+sonIgualesDyV2(m1,m2));
 
 	}
 
