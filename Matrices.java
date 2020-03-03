@@ -19,11 +19,8 @@ public class Matrices {
 	public static boolean sonIgualesDyV4(int[][] m1, int[][] m2, int inix, int finx, int iniy, int finy) {
 
 		if (inix == finx) {
-			if (m1[inix][iniy] == m2[inix][iniy]) {
-				return true;
-			} else {
-				return false;
-			}
+			return m1[inix][iniy] == m2[inix][iniy];
+
 		} else {
 			return sonIgualesDyV4(m1, m2, inix, (finx + inix) / 2, iniy, (finy + iniy) / 2)
 					&& sonIgualesDyV4(m1, m2, inix, (finx + inix) / 2, (finy + iniy) / 2 + 1, finy)
