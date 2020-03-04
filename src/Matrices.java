@@ -1,4 +1,4 @@
-//a
+
 public class Matrices {
 
 	public static boolean sonIguales(int[][] m1, int[][] m2) {
