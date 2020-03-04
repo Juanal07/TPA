@@ -18,10 +18,10 @@ public class Matrices {
 
 	public static boolean sonIgualesDyV4(int[][] m1, int[][] m2, int inix, int finx, int iniy, int finy) {
 
-		if (inix == finx) {
+		if (inix == finx) { // caso base
 			return m1[inix][iniy] == m2[inix][iniy];
 
-		} else {
+		} else { // caso recursivo, se divide una matriz cuadrada en 4 matrices cuadradas
 			return sonIgualesDyV4(m1, m2, inix, (finx + inix) / 2, iniy, (finy + iniy) / 2)
 					&& sonIgualesDyV4(m1, m2, inix, (finx + inix) / 2, (finy + iniy) / 2 + 1, finy)
 					&& sonIgualesDyV4(m1, m2, (finx + inix) / 2 + 1, finx, iniy, (finy + iniy) / 2)
@@ -35,7 +35,7 @@ public class Matrices {
 		boolean valor = true;
 		if (iniy == finy) {
 			int i = 0;
-			while (i < m1.length ) {
+			while (i < m1.length) {
 				if (m1[i][iniy] != m2[i][iniy]) {
 					valor = false;
 				}
