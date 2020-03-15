@@ -37,14 +37,13 @@ public class AlgoritmosOrdenacion {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] lista = { 3, 3, 2, 2 };
 		for (int i = 0; i < lista.length; i++) {
 			System.out.print(lista[i] + ", ");
 		}
 		System.out.println();
 		System.out.println("**********************************");
-		quicksort(lista, 0, lista.length-1);
+		quicksort(lista, 0, lista.length - 1);
 		for (int i = 0; i < lista.length; i++) {
 			System.out.print(lista[i] + ", ");
 		}

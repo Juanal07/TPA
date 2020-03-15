@@ -32,9 +32,8 @@ public class OrdenadoDyV {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] lista = { 2, 55 };
-//		System.out.println(BusquedaOrdenadaDyV(lista, 0, lista.length - 1, 2));
+		// System.out.println(BusquedaOrdenadaDyV(lista, 0, lista.length - 1, 2));
 		System.out.println(SumaOrdenadaDyV(lista, 0, lista.length - 1, 0));
 
 	}
