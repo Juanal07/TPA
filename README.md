@@ -1,1 +1,1 @@
-Ejercicios de la asignatura Técnicas de Programación avanzadas
+Ejercicios de la asignatura Técnicas de Programación Avanzadas
