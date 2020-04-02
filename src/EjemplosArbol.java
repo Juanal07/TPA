@@ -10,6 +10,8 @@ public class EjemplosArbol {
 //		}
 
 	public static boolean esPrimo(int numero) {
+		if (numero < 2)
+			return false;
 		int contador = 2;
 		boolean primo = true;
 		while ((primo) && (contador != numero)) {
@@ -72,20 +74,32 @@ public class EjemplosArbol {
 	}// cuantos nodos hoja hay
 
 	public static boolean arbolesIguales(ArbolBin<Integer> a1, ArbolBin<Integer> a2) {
-		if (a1.esVacio() && a2.esVacio()) {
+
+		// si los dos son vacios
+		if (a1.esVacio() && a2.esVacio())
 			return true;
-		} else {
-			return (a1.raiz() == a2.raiz()) ? arbolesIguales(a1.hijoIzquierdo(), a2.hijoIzquierdo())
-					&& arbolesIguales(a1.hijoDerecho(), a2.hijoDerecho()) : false;
+		// si uno es vacio y el espejo no
+		else {
+			if (a1.esVacio() || a2.esVacio())
+				return false;
+			else
+				return (a1.raiz().equals(a2.raiz())) ? arbolesIguales(a1.hijoIzquierdo(), a2.hijoIzquierdo())
+						&& arbolesIguales(a1.hijoDerecho(), a2.hijoDerecho()) : false;
 
 		}
 
 	}// decir si son iguales
 
+	// mostrar nodos que tengan hijo izq y derch
+
+	// calcular profundidad
+
+	// decir si el arbol estaba "lleno", si tiene todos los nodos dado un nivel de
+	// profundidad
+
 	public static void main(String[] args) {
-//		ArbolBin<Integer> d = new ArbolBin<Integer>(new ArbolBin<Integer>(),4,new ArbolBin<Integer>());
 		ArbolBin<Integer> f = new ArbolBin<Integer>(new ArbolBin<Integer>(), 6, new ArbolBin<Integer>());
-		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(), 5, f);
+		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(), 7, f);
 		ArbolBin<Integer> b = new ArbolBin<Integer>(new ArbolBin<Integer>(), 2, new ArbolBin<Integer>());
 		ArbolBin<Integer> c = new ArbolBin<Integer>(e, 3, new ArbolBin<Integer>());
 
@@ -97,7 +111,7 @@ public class EjemplosArbol {
 		System.out.println("Este arbol tiene: " + contarNodos(a) + " nodos");
 		System.out.println("La suma de los valores es: " + sumarNodos(a));
 		System.out.println("Hay: " + contarPares(a) + " nodos pares");
-//		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
+		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
 		System.out.println("Hay: " + nodosHoja(a) + " nodos hoja");
 		System.out.println("¿Estos arboles son iguales? " + arbolesIguales(a, b));
 
