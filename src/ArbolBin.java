@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ArbolBin<T> {
-	
+
 	class NodoBin {
 		T info;
 		NodoBin hijoIzq;
@@ -22,15 +22,15 @@ public class ArbolBin<T> {
 	}
 
 	public ArbolBin(ArbolBin<T> subIzq, T infoRaiz, ArbolBin<T> subDcho) {
-		NodoBin izq = subIzq == null? null : subIzq.raiz; 
-		NodoBin dcho = subDcho == null? null : subDcho.raiz; 
+		NodoBin izq = subIzq == null ? null : subIzq.raiz;
+		NodoBin dcho = subDcho == null ? null : subDcho.raiz;
 		this.raiz = new NodoBin(izq, infoRaiz, dcho);
 	}
 
 	public boolean esVacio() {
 		return raiz == null;
 	}
-	
+
 	public T raiz() {
 		return this.raiz.info;
 	}
@@ -48,33 +48,34 @@ public class ArbolBin<T> {
 
 		return subDcho;
 	}
-	
-	public void dibujar(int nivel){
-		
-		if ( !this.esVacio() ){
-			for (int i = 1; i<= nivel; i++)
+
+	public void dibujar(int nivel) {
+
+		if (!this.esVacio()) {
+			for (int i = 1; i <= nivel; i++)
 				System.out.print("  ");
 			System.out.println(this.raiz());
-			this.hijoIzquierdo().dibujar(nivel+1);
-			this.hijoDerecho().dibujar(nivel+1);			
+			this.hijoIzquierdo().dibujar(nivel + 1);
+			this.hijoDerecho().dibujar(nivel + 1);
 		}
-	}//dibujar
-				
+	}// dibujar
 
 	public static void main(String[] args) {
-		//ArbolBin<Integer> g = new ArbolBin<Integer>(new ArbolBin<Character>(),'G',new ArbolBin<Character>());
-		ArbolBin<Integer> d = new ArbolBin<Integer>(new ArbolBin<Integer>(),4,new ArbolBin<Integer>());
-		ArbolBin<Integer> f = new ArbolBin<Integer>(new ArbolBin<Integer>(),6,new ArbolBin<Integer>());
-		//ArbolBin<Character> e = new ArbolBin<Character>(new ArbolBin<Character>(),'E',f);
-		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(),5,f);
-		ArbolBin<Integer> b = new ArbolBin<Integer>(d,2,new ArbolBin<Integer>());
-		ArbolBin<Integer> c = new ArbolBin<Integer>(e,3,new ArbolBin<Integer>());
-		
-		ArbolBin<Integer> a = new ArbolBin<Integer>(b,1,c);
+		// ArbolBin<Integer> g = new ArbolBin<Integer>(new ArbolBin<Character>(),'G',new
+		// ArbolBin<Character>());
+		ArbolBin<Integer> d = new ArbolBin<Integer>(new ArbolBin<Integer>(), 4, new ArbolBin<Integer>());
+		ArbolBin<Integer> f = new ArbolBin<Integer>(new ArbolBin<Integer>(), 6, new ArbolBin<Integer>());
+		// ArbolBin<Character> e = new ArbolBin<Character>(new
+		// ArbolBin<Character>(),'E',f);
+		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(), 5, f);
+		ArbolBin<Integer> b = new ArbolBin<Integer>(d, 2, new ArbolBin<Integer>());
+		ArbolBin<Integer> c = new ArbolBin<Integer>(e, 3, new ArbolBin<Integer>());
+
+		ArbolBin<Integer> a = new ArbolBin<Integer>(b, 1, c);
 
 		a.dibujar(1);
-		
+
 		System.out.println("*** FIN ***");
 
-	} //main
-}//class
+	} // main
+}// class

@@ -99,7 +99,7 @@ public class EjemplosArbol {
 		System.out.println("Hay: " + contarPares(a) + " nodos pares");
 //		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
 		System.out.println("Hay: " + nodosHoja(a) + " nodos hoja");
-		System.out.println("¿El arbol a y el b son iguales? " + arbolesIguales(a, b));
+		System.out.println("¿Estos arboles son iguales? " + arbolesIguales(a, b));
 
 	}
 
