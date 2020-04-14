@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author Juan Alberto
+ * @expediente 21948149
+ * @fecha 14-04-2020
+ *
+ */
+
 public class Traspuesta {
 
 	public static boolean esTraspuesta_v1 (int[][] a, int[][] b) {
@@ -80,6 +88,17 @@ public class Traspuesta {
 		System.out.println("\nPRUEBA 3:");
 		System.out.println(" * esTraspuesta_DyV (m1, m2): " + esTraspuesta_DyV(m1,m2));
 		System.out.println(" * esTraspuesta_DyV (m1, m3): " + esTraspuesta_DyV(m1,m3));
+		
+		/* ****** DATOS PERSONALES ****** */
+		
+		String miNombre = "Juan Alberto";
+		String misApellidos = "Raya Rodriguez";
+		String miExpediente = "21948149";
+		
+		System.out.println("\nESTUDIANTE:");
+		System.out.println(" * Apellidos:\t" + miNombre);
+		System.out.println(" * Nombre:\t" + misApellidos);
+		System.out.println(" * Expediente:\t" + miExpediente);
 		
 		System.out.println("\n*** FIN ***");
 	

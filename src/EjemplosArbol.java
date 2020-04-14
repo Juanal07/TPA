@@ -90,20 +90,80 @@ public class EjemplosArbol {
 
 	}// decir si son iguales
 
-	// mostrar nodos que tengan hijo izq y derch
+	public static void nodosConHijos(ArbolBin<Integer> arbol) {
 
-	// calcular profundidad
+		if (!arbol.esVacio()) {
+			if (!arbol.hijoIzquierdo().esVacio()) {
+				if (!arbol.hijoDerecho().esVacio()) {
+					System.out.print(arbol.raiz() + ", ");
+					nodosConHijos(arbol.hijoIzquierdo());
+					nodosConHijos(arbol.hijoDerecho());
+				} else {
+					nodosConHijos(arbol.hijoIzquierdo());
+				}
+			} else if (!arbol.hijoDerecho().esVacio()) {
+				nodosConHijos(arbol.hijoDerecho());
+			}
 
-	// decir si el arbol estaba "lleno", si tiene todos los nodos dado un nivel de
-	// profundidad
+		}
+	}// mostrar nodos que tengan hijo izq y derch
+
+	public static int profundidad(ArbolBin<Integer> arbol) {
+
+		if (!arbol.esVacio()) {
+			return 1 + Math.max(profundidad(arbol.hijoIzquierdo()), profundidad(arbol.hijoDerecho()));
+
+		} else {
+			return 0;
+		}
+	}// profundidad
+
+	public static boolean arbolLleno(ArbolBin<Integer> arbol, int profundidad) {
+
+		if (!arbol.esVacio()) {
+			if (!arbol.hijoIzquierdo().esVacio() && !arbol.hijoDerecho().esVacio()) {
+				if (profundidad == 2) {
+					return true;
+				} else {
+					return arbolLleno(arbol.hijoIzquierdo(), profundidad - 1)
+							&& arbolLleno(arbol.hijoDerecho(), profundidad - 1);
+				}
+			} else {
+				return false;
+			}
+
+		} else {
+			return false;
+		}
+
+	}// decir si el arbol estaba "lleno", si tiene todos los nodos dado un nivel de
+		// profundidad
+
+	public static boolean buscarElemABB(ArbolBin<Integer> arbol, int x) {
+
+		if (!arbol.esVacio()) {
+			if (arbol.raiz() == x) {
+				return true;
+			} else if (arbol.raiz() > x) {
+				return buscarElemABB(arbol.hijoIzquierdo(), x);
+			} else {
+				return buscarElemABB(arbol.hijoDerecho(), x);
+			}
+		} else {
+			return false;
+		}
+	}// buscar elemento en ABB
 
 	public static void main(String[] args) {
-		ArbolBin<Integer> f = new ArbolBin<Integer>(new ArbolBin<Integer>(), 6, new ArbolBin<Integer>());
-		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(), 7, f);
-		ArbolBin<Integer> b = new ArbolBin<Integer>(new ArbolBin<Integer>(), 2, new ArbolBin<Integer>());
-		ArbolBin<Integer> c = new ArbolBin<Integer>(e, 3, new ArbolBin<Integer>());
+		ArbolBin<Integer> g = new ArbolBin<Integer>(new ArbolBin<Integer>(), 9, new ArbolBin<Integer>());
+		ArbolBin<Integer> f = new ArbolBin<Integer>(new ArbolBin<Integer>(), 7, new ArbolBin<Integer>());
+		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(), 4, new ArbolBin<Integer>());
+		ArbolBin<Integer> d = new ArbolBin<Integer>(new ArbolBin<Integer>(), 1, new ArbolBin<Integer>());
 
-		ArbolBin<Integer> a = new ArbolBin<Integer>(b, 1, c);
+		ArbolBin<Integer> c = new ArbolBin<Integer>(f, 8, g);
+		ArbolBin<Integer> b = new ArbolBin<Integer>(d, 3, e);
+
+		ArbolBin<Integer> a = new ArbolBin<Integer>(b, 5, c);
 
 		a.dibujar(1);
 
@@ -114,6 +174,12 @@ public class EjemplosArbol {
 		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
 		System.out.println("Hay: " + nodosHoja(a) + " nodos hoja");
 		System.out.println("¿Estos arboles son iguales? " + arbolesIguales(a, b));
+		System.out.print("Los nodos que tienen ambos hijos son: ");
+		nodosConHijos(a);
+		System.out.println();
+		System.out.println("La profundidad del arbol es: " + profundidad(a));
+		System.out.println("Es arbol lleno: " + arbolLleno(a, 3));
+		System.out.println("Esta el elemento en el arbol?: "+buscarElemABB(a, 4));
 
 	}
 
