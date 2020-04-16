@@ -168,17 +168,17 @@ public class EjemplosArbol {
 		a.dibujar(1);
 
 		System.out.println("*** FIN ***");
-		System.out.println("Este arbol tiene: " + contarNodos(a) + " nodos");
-		System.out.println("La suma de los valores es: " + sumarNodos(a));
-		System.out.println("Hay: " + contarPares(a) + " nodos pares");
-		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
-		System.out.println("Hay: " + nodosHoja(a) + " nodos hoja");
-		System.out.println("¿Estos arboles son iguales? " + arbolesIguales(a, b));
-		System.out.print("Los nodos que tienen ambos hijos son: ");
-		nodosConHijos(a);
-		System.out.println();
-		System.out.println("La profundidad del arbol es: " + profundidad(a));
-		System.out.println("Es arbol lleno: " + arbolLleno(a, 3));
+//		System.out.println("Este arbol tiene: " + contarNodos(a) + " nodos");
+//		System.out.println("La suma de los valores es: " + sumarNodos(a));
+//		System.out.println("Hay: " + contarPares(a) + " nodos pares");
+//		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
+//		System.out.println("Hay: " + nodosHoja(a) + " nodos hoja");
+//		System.out.println("¿Estos arboles son iguales? " + arbolesIguales(a, b));
+//		System.out.print("Los nodos que tienen ambos hijos son: ");
+//		nodosConHijos(a);
+//		System.out.println();
+//		System.out.println("La profundidad del arbol es: " + profundidad(a));
+//		System.out.println("Es arbol lleno: " + arbolLleno(a, 3));
 		System.out.println("Esta el elemento en el arbol?: "+buscarElemABB(a, 4));
 
 	}
