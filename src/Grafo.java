@@ -29,9 +29,9 @@ public class Grafo<Clave, InfoVertice, Coste> {
         }
     }
 
-    Lista<NodoVertice> vertices;
+    private Lista<NodoVertice> vertices;
 
-    Lista<Lista<NodoArista>> aristas;
+    private Lista<Lista<NodoArista>> aristas;
 
     public Grafo() {
         vertices = new Lista<NodoVertice>();
@@ -318,6 +318,17 @@ public class Grafo<Clave, InfoVertice, Coste> {
         }//while
     }//profundidad
 
+    public static <Clave, InfoVertice, Coste> void imprimirGrados (Grafo <Clave, InfoVertice, Coste> gr){
+
+        Lista <Clave> lVertices= gr.listaVertices();
+        for (int i=1; i<=gr.numVertices(); i++) {
+            Clave aux = lVertices.consultar(i);
+            System.out.println("Vertice: "+aux+" tiene grado="+(gr.gradoEntrada(aux)+gr.gradoSalida(aux))+", ");
+        }
+    }
+
+    //funcion que te devuelva el grado del grafo
+
 
     public static void main(String args[]) {
         Grafo<String, String, Integer> grafoCiudades = new Grafo<String, String, Integer>();
@@ -366,6 +377,8 @@ public class Grafo<Clave, InfoVertice, Coste> {
 
 
         System.out.println("\n*** FIN ***");
+        imprimirGrados(grafoCiudades);
+
 
     }//main
 
