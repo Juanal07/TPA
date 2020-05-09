@@ -20,12 +20,12 @@ public class Grafo<Clave, InfoVertice, Coste> {
 
         public NodoArista(NodoVertice d) {
             destino = d;
-            coste = null;
+            coste   = null;
         }
 
         public NodoArista(NodoVertice d, Coste c) {
             destino = d;
-            coste = c;
+            coste   = c;
         }
     }
 
@@ -35,7 +35,7 @@ public class Grafo<Clave, InfoVertice, Coste> {
 
     public Grafo() {
         vertices = new Lista<NodoVertice>();
-        aristas = new Lista<Lista<NodoArista>>();
+        aristas  = new Lista<Lista<NodoArista>>();
     }
 
     public boolean esVacio() {
@@ -135,7 +135,7 @@ public class Grafo<Clave, InfoVertice, Coste> {
             while (!aristaModificada && j <= aristas.consultar(i).longitud()) {
                 if (aristas.consultar(i).consultar(j).destino.clave.equals(d)) {
                     aristas.consultar(i).consultar(j).coste = c;
-                    aristaModificada = true;
+                    aristaModificada                        = true;
                 }
                 j++;
             }
@@ -185,7 +185,7 @@ public class Grafo<Clave, InfoVertice, Coste> {
             boolean aristaEncontrada = false;
             while (!aristaEncontrada && j <= aristas.consultar(i).longitud()) {
                 if (aristas.consultar(i).consultar(j).destino.clave.equals(d)) {
-                    coste = aristas.consultar(i).consultar(j).coste;
+                    coste            = aristas.consultar(i).consultar(j).coste;
                     aristaEncontrada = true;
                 }
                 j++;
@@ -237,8 +237,8 @@ public class Grafo<Clave, InfoVertice, Coste> {
         // Si lo encuentra, introduce sus sucesores a la lista
         if (i <= vertices.longitud())
             for (int j = 1; j <= aristas.consultar(i).longitud(); j++)
-                sucesores.insertar(j,
-                        aristas.consultar(i).consultar(j).destino.clave);
+                 sucesores.insertar(j,
+                         aristas.consultar(i).consultar(j).destino.clave);
 
         return sucesores;
     }
@@ -272,7 +272,7 @@ public class Grafo<Clave, InfoVertice, Coste> {
         Lista<Clave> listaVertices = new Lista<Clave>();
 
         for (int i = 1; i <= vertices.longitud(); i++)
-            listaVertices.insertar(1, vertices.consultar(i).clave);
+             listaVertices.insertar(1, vertices.consultar(i).clave);
 
         return listaVertices;
     }
@@ -282,8 +282,8 @@ public class Grafo<Clave, InfoVertice, Coste> {
         for (int i = 1; i <= vertices.longitud(); i++) {
             texto += vertices.consultar(i).clave + " --> ";
             for (int j = 1; j <= aristas.consultar(i).longitud(); j++)
-                texto += aristas.consultar(i).consultar(j).destino.clave + "("
-                        + aristas.consultar(i).consultar(j).coste + ") ";
+                 texto += aristas.consultar(i).consultar(j).destino.clave + "("
+                         + aristas.consultar(i).consultar(j).coste + ") ";
             texto += "\n";
         }
 
@@ -291,43 +291,56 @@ public class Grafo<Clave, InfoVertice, Coste> {
     }
 
 
+    public static <Clave, InfoVertice, Coste> void profREC(Grafo<Clave, InfoVertice, Coste> gr, Clave inicio, Lista<Clave> noVisitados) {
 
-    public static <Clave, InfoVertice, Coste> void profREC(Grafo<Clave, InfoVertice, Coste> gr, Clave inicio, Lista<Clave> noVisitados){
-
-        System.out.println("*VISITO: "+inicio); //visito
+        System.out.println("*VISITO: " + inicio); //visito
         noVisitados.borrar(noVisitados.buscar(inicio));//elimino el vértice visitado de la lista de no visitados
-        System.out.println("\tNoVisitados: "+noVisitados);
+        System.out.println("\tNoVisitados: " + noVisitados);
 
         Lista<Clave> sucesores = gr.listaSucesores(inicio); //sucesores del vértice visitado
-        System.out.println("\tSucesores de "+inicio+": "+sucesores);
+        System.out.println("\tSucesores de " + inicio + ": " + sucesores);
         //recorro los sucesores. Si alguno NO está visitado profundizo y lo visito
-        for (int i = 1; i <= sucesores.longitud() ; i++){
+        for (int i = 1; i <= sucesores.longitud(); i++) {
             Clave v = sucesores.consultar(i);
-            if (noVisitados.buscar(v)!=0){ //si el sucesor i-esimo está en no visitados, profundizo
+            if (noVisitados.buscar(v) != 0) { //si el sucesor i-esimo está en no visitados, profundizo
                 profREC(gr, v, noVisitados);
             }//if
         }//for
     }//profREC
 
-    public static <Clave, InfoVertice, Coste> void profundidad (Grafo<Clave, InfoVertice, Coste> gr, Clave inicio){
+    public static <Clave, InfoVertice, Coste> void profundidad(Grafo<Clave, InfoVertice, Coste> gr, Clave inicio) {
         Lista<Clave> noVisitados = gr.listaVertices();
         profREC(gr, inicio, noVisitados);
-        while (noVisitados.esVacia() == false){
+        while (noVisitados.esVacia() == false) {
             System.out.println("\n**Nueva componente conexa**\n");
             profREC(gr, noVisitados.consultar(1), noVisitados);
         }//while
     }//profundidad
 
-    public static <Clave, InfoVertice, Coste> void imprimirGrados (Grafo <Clave, InfoVertice, Coste> gr){
+    public static <Clave, InfoVertice, Coste> void imprimirGrados(Grafo<Clave, InfoVertice, Coste> gr) {
 
-        Lista <Clave> lVertices= gr.listaVertices();
-        for (int i=1; i<=gr.numVertices(); i++) {
+        Lista<Clave> lVertices = gr.listaVertices();
+        for (int i = 1; i <= gr.numVertices(); i++) {
             Clave aux = lVertices.consultar(i);
-            System.out.println("Vertice: "+aux+" tiene grado="+(gr.gradoEntrada(aux)+gr.gradoSalida(aux))+", ");
+            System.out.println("Vertice: " + aux + " tiene grado=" + (gr.gradoEntrada(aux) + gr.gradoSalida(aux)) + ", ");
         }
     }
 
-    //funcion que te devuelva el grado del grafo
+    public static <Clave, InfoVertice, Coste> void imprimirGradoTotal(Grafo<Clave, InfoVertice, Coste> gr) {
+        int contador = 0;
+        int grado = 0;
+        Lista<Clave> lVertices = gr.listaVertices();
+        for (int i = 1; i <= gr.numVertices(); i++) {
+            Clave aux = lVertices.consultar(i);
+            grado = gr.gradoSalida(aux) + gr.gradoEntrada(aux);
+            if (contador < grado)
+                contador = grado;
+        }
+        System.out.println("El grado total del grafo es = " + contador);
+    }
+
+
+    //hacer funcion que te devuelva el grado del grafo
 
 
     public static void main(String args[]) {
@@ -343,22 +356,16 @@ public class Grafo<Clave, InfoVertice, Coste> {
 
         grafoCiudades.insertarArista("COR", "BIL", 644);
         grafoCiudades.insertarArista("COR", "MAD", 609);
-
         grafoCiudades.insertarArista("BIL", "BAR", 620);
         grafoCiudades.insertarArista("BIL", "MAD", 395);
-
         grafoCiudades.insertarArista("BAR", "BIL", 620);
         grafoCiudades.insertarArista("BAR", "VAL", 649);
-
         grafoCiudades.insertarArista("MAD", "COR", 609);
         grafoCiudades.insertarArista("MAD", "VAL", 352);
         grafoCiudades.insertarArista("MAD", "SEV", 538);
-
         grafoCiudades.insertarArista("VAL", "MAD", 352);
         grafoCiudades.insertarArista("VAL", "SEV", 697);
-
         grafoCiudades.insertarArista("SEV", "MAD", 538);
-
         grafoCiudades.insertarArista("CUE", "JAE", 356);
 
         System.out.println(grafoCiudades);
@@ -375,9 +382,9 @@ public class Grafo<Clave, InfoVertice, Coste> {
 
         profundidad(grafoCiudades, "BAR");
 
-
         System.out.println("\n*** FIN ***");
         imprimirGrados(grafoCiudades);
+        imprimirGradoTotal(grafoCiudades);
 
 
     }//main
