@@ -1,3 +1,4 @@
+package Checkpoint1;
 
 public class Ejercicio2 {
 
@@ -29,7 +30,7 @@ public class Ejercicio2 {
 			int q2 = inicio + ((fin - inicio) / 2);
 			int q1 = inicio + ((q2 - inicio) / 2);
 			int q3 = inicio + (fin - q1);
-			// Recursividad
+			// DyV.Recursividad
 			if (x == lista[q2]) {
 				return q2;
 			} else {
@@ -41,7 +42,7 @@ public class Ejercicio2 {
 							System.out.println("me voy por el 1er cuarto");
 							return BusquedaOrdenadaCuaternariaDyV(lista, inicio, q1 - 1, x);
 						} else {
-							System.out.println("me voy por el 2º cuarto");
+							System.out.println("me voy por el 2ï¿½ cuarto");
 							return BusquedaOrdenadaCuaternariaDyV(lista, q1 + 1, q2 - 1, x);
 						}
 					}
@@ -54,7 +55,7 @@ public class Ejercicio2 {
 							System.out.println("me voy por el 3er cuarto");
 							return BusquedaOrdenadaCuaternariaDyV(lista, q2 + 1, q3 - 1, x);
 						} else {
-							System.out.println("me voy por el 4º cuarto");
+							System.out.println("me voy por el 4ï¿½ cuarto");
 							return BusquedaOrdenadaCuaternariaDyV(lista, q3 + 1, fin, x);
 
 						}

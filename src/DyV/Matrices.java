@@ -1,3 +1,4 @@
+package DyV;
 
 public class Matrices {
 
@@ -64,8 +65,8 @@ public class Matrices {
 		// };
 
 		System.out.println("Comparacion iterativa: " + sonIguales(m1, m2));
-		System.out.println("Comparacion DyV entre 4: " + sonIgualesDyV4(m1, m2, 0, 7, 0, 7));
-		System.out.println("Comparacion DyV entre 2: " + sonIgualesDyV2(m1, m2, 0, 7));
+		System.out.println("Comparacion DyV.DyV entre 4: " + sonIgualesDyV4(m1, m2, 0, 7, 0, 7));
+		System.out.println("Comparacion DyV.DyV entre 2: " + sonIgualesDyV2(m1, m2, 0, 7));
 
 	}
 

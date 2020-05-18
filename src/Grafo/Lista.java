@@ -1,3 +1,5 @@
+package Grafo;
+
 public class Lista<T> {
 
     private T[] contenedor;

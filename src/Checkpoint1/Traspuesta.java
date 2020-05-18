@@ -1,3 +1,5 @@
+package Checkpoint1;
+
 /**
  * 
  * @author Juan Alberto

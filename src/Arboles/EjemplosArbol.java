@@ -1,3 +1,4 @@
+package Arboles;
 
 public class EjemplosArbol {
 
@@ -171,9 +172,9 @@ public class EjemplosArbol {
 //		System.out.println("Este arbol tiene: " + contarNodos(a) + " nodos");
 //		System.out.println("La suma de los valores es: " + sumarNodos(a));
 //		System.out.println("Hay: " + contarPares(a) + " nodos pares");
-//		System.out.println("Hay: " + contarNodosPrimos(a) + " números primos");
+//		System.out.println("Hay: " + contarNodosPrimos(a) + " nï¿½meros primos");
 //		System.out.println("Hay: " + nodosHoja(a) + " nodos hoja");
-//		System.out.println("¿Estos arboles son iguales? " + arbolesIguales(a, b));
+//		System.out.println("ï¿½Estos arboles son iguales? " + arbolesIguales(a, b));
 //		System.out.print("Los nodos que tienen ambos hijos son: ");
 //		nodosConHijos(a);
 //		System.out.println();

@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
+package Arboles;
 
 public class ArbolBin<T> {
 
@@ -61,12 +60,12 @@ public class ArbolBin<T> {
 	}// dibujar
 
 	public static void main(String[] args) {
-		// ArbolBin<Integer> g = new ArbolBin<Integer>(new ArbolBin<Character>(),'G',new
-		// ArbolBin<Character>());
+		// Arboles.ArbolBin<Integer> g = new Arboles.ArbolBin<Integer>(new Arboles.ArbolBin<Character>(),'G',new
+		// Arboles.ArbolBin<Character>());
 		ArbolBin<Integer> d = new ArbolBin<Integer>(new ArbolBin<Integer>(), 4, new ArbolBin<Integer>());
 		ArbolBin<Integer> f = new ArbolBin<Integer>(new ArbolBin<Integer>(), 6, new ArbolBin<Integer>());
-		// ArbolBin<Character> e = new ArbolBin<Character>(new
-		// ArbolBin<Character>(),'E',f);
+		// Arboles.ArbolBin<Character> e = new Arboles.ArbolBin<Character>(new
+		// Arboles.ArbolBin<Character>(),'E',f);
 		ArbolBin<Integer> e = new ArbolBin<Integer>(new ArbolBin<Integer>(), 5, f);
 		ArbolBin<Integer> b = new ArbolBin<Integer>(d, 2, new ArbolBin<Integer>());
 		ArbolBin<Integer> c = new ArbolBin<Integer>(e, 3, new ArbolBin<Integer>());

@@ -1,3 +1,5 @@
+package DyV;
+
 public class OrdenadoDyV {
 
 	public static int BusquedaOrdenadaDyV(int[] lista, int inicio, int fin, int x) {

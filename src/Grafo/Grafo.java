@@ -1,3 +1,5 @@
+package Grafo;
+
 public class Grafo<Clave, InfoVertice, Coste> {
 
     protected class NodoVertice {
@@ -337,10 +339,46 @@ public class Grafo<Clave, InfoVertice, Coste> {
                 contador = grado;
         }
         System.out.println("El grado total del grafo es = " + contador);
+    }//grado total del grafo
+
+    public static <Clave, InfoVertice, Coste> void imprimirFuentesSumideros(Grafo<Clave, InfoVertice, Coste> gr) {
+
+        Lista<Clave> lVertices = gr.listaVertices();
+        for (int i =1; i<=lVertices.longitud();i++){
+            Clave aux = lVertices.consultar(i);
+            if (gr.listaPredecesores(aux).longitud()==0 && gr.listaSucesores(aux).longitud() !=0)
+                System.out.println(lVertices.consultar(i).toString()+": fuente");
+            else if( gr.listaPredecesores(aux).longitud()!=0 && gr.listaSucesores(aux).longitud() ==0)
+                System.out.println(lVertices.consultar(i).toString()+": sumidero");
+        }
+    }
+
+    public static <Clave, InfoVertice, Coste> Lista<Clave> verticesAislados(Grafo<Clave, InfoVertice, Coste> gr) {
+        Lista<Clave> aislados = new Lista<Clave>();
+        Lista<Clave> lVertices = gr.listaVertices();
+        for (int i =1; i<=lVertices.longitud();i++){
+            Clave aux = lVertices.consultar(i);
+            if (gr.listaPredecesores(aux).longitud()==0 && gr.listaSucesores(aux).longitud() ==0) {
+                aislados.insertar(aislados.longitud()+1, aux);
+            }
+        }
+        return aislados;
+    }
+
+    public static <Clave, InfoVertice, Coste> int bucles(Grafo<Clave, InfoVertice, Coste> gr) {
+        int bucles = 0;
+        Lista<Clave> lVertices = gr.listaVertices();
+        for (int i =1; i<=lVertices.longitud();i++) {
+            Clave aux = lVertices.consultar(i);
+            if (gr.listaSucesores(aux).buscar(aux) != 0)
+                bucles++;
+        }
+        return bucles;
     }
 
 
-    //hacer funcion que te devuelva el grado del grafo
+
+
 
 
     public static void main(String args[]) {
@@ -366,26 +404,31 @@ public class Grafo<Clave, InfoVertice, Coste> {
         grafoCiudades.insertarArista("VAL", "MAD", 352);
         grafoCiudades.insertarArista("VAL", "SEV", 697);
         grafoCiudades.insertarArista("SEV", "MAD", 538);
-        grafoCiudades.insertarArista("CUE", "JAE", 356);
+        
+//        grafoCiudades.insertarArista("CUE", "JAE", 356);
 
-        System.out.println(grafoCiudades);
-		/*
-		System.out.println("NumVertices= " + grafoCiudades.numVertices());
-		System.out.println("ListaSucesores(BAR)\n"
-				+ grafoCiudades.listaSucesores("BAR"));
-		System.out.println("ListaPredecesores(MAD)\n"
-				+ grafoCiudades.listaPredecesores("MAD"));
+//       System.out.println(grafoCiudades);
+//
+//		System.out.println("NumVertices= " + grafoCiudades.numVertices());
+//		System.out.println("ListaSucesores(BAR)\n"
+//				+ grafoCiudades.listaSucesores("BAR"));
+//		System.out.println("ListaPredecesores(MAD)\n"
+//				+ grafoCiudades.listaPredecesores("MAD"));
 
-		System.out.println("Recorrido en profundidad");
-		*/
-        //grafoCiudades.testCiclicidad();
+//		System.out.println("Recorrido en profundidad");
 
-        profundidad(grafoCiudades, "BAR");
+//      grafoCiudades.testCiclicidad();
+//        imprimirFuentesSumideros(grafoCiudades);
+//      profundidad(grafoCiudades, "BAR");
+//
+//      System.out.println("\n*** FIN ***");
+//      imprimirGrados(grafoCiudades);
+//      imprimirGradoTotal(grafoCiudades);
 
-        System.out.println("\n*** FIN ***");
-        imprimirGrados(grafoCiudades);
-        imprimirGradoTotal(grafoCiudades);
-
+//        for (int i=1;i<=verticesAislados(grafoCiudades).longitud();i++){
+//            System.out.println(verticesAislados(grafoCiudades).consultar(i));
+//        }
+        System.out.println(bucles(grafoCiudades));
 
     }//main
 
