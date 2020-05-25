@@ -2,17 +2,22 @@ package Checkpoint2;
 
 /**
  * 
- * @author Nombre y apellidos
- * @expediente 12345678
- * @fecha dd-mm-aaaa
+ * @author Juan Alberto Raya
+ * @expediente 21948149
+ * @fecha 25-05-2020
  *
  */
 
 public class AlgoritmoEspejo <Info> {
 
 	public static <Info> ArbolBin<Info> algoritmoEspejoPractica (ArbolBin<Info> arbol){
-		return null; // para que compile, eliminar.
-		// incluye aqu� tu c�digo
+		
+		if (arbol.esVacio()) {//caso base
+			return new ArbolBin<Info>();
+		}else{//caso recursivo
+			return new ArbolBin<Info>(algoritmoEspejoPractica(arbol.hijoDerecho()), arbol.raiz(), algoritmoEspejoPractica(arbol.hijoIzquierdo()));
+			//la raiz se queda fija y de hijo izq le asigno el espejo del hijo derecho y al hijo derecho le asigno el espejo del hijo izquierdo
+		}
 	}
 
 	
@@ -41,20 +46,20 @@ public class AlgoritmoEspejo <Info> {
 		ArbolBin<Character> a4 = new ArbolBin<Character>(a3,'D', a2);
 		
 		// lo dibujo
-		a1.dibujar(1);
+		a4.dibujar(1);
 		// declaro un �rbol espejo, que modificar� con la funci�n para 
-		ArbolBin<Integer> espejoChar;
+		ArbolBin<Character> espejoChar;
 		// invoco a la funci�n para calcular el espejo
-		espejoChar=algoritmoEspejoPractica(a);
+		espejoChar=algoritmoEspejoPractica(a4);
 		// dibujo el espejo
 		espejoChar.dibujar(1);
 		
 
 		/* ****** DATOS PERSONALES ****** */
 		
-		String miNombre = "indica aqui tu nombre";
-		String misApellidos = "indica aqui tus apellidos";
-		String miExpediente = "indica aqui tu expediente";
+		String miNombre = "Juan Alberto";
+		String misApellidos = "Raya Rodríguez";
+		String miExpediente = "21948149";
 		
 		System.out.println("\nESTUDIANTE:");
 		System.out.println(" * Apellidos:\t" + misApellidos);
