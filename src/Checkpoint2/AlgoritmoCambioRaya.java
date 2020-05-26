@@ -1,11 +1,8 @@
 package Checkpoint2;
 
-import java.math.BigDecimal;
+public class AlgoritmoCambioRaya {
 
-public class CambioMinimo {
-
-    public static int seleccionarMoneda(int[] valores, int[] cantidades, int cantidad, int acumulado) {
-
+    private int seleccionar (int[] valores, int[] cantidades, int cantidad, int acumulado) {
 
         int i = 0;//inicializo iterador que recorre los valores
         boolean condicion = true;
@@ -20,16 +17,15 @@ public class CambioMinimo {
             i = -1;
         }
         return i;
-    }
+    }//seleccionar
 
-    public static int[] cambioMin(int[] valores, int[] cantidades, int cantidad) {
+    public boolean cambioMinimo(int[] valores, int[] cantidades, int cantidad, int[] cambio) {
 
-        int[] cambio = {0, 0, 0, 0, 0, 0};//inicializo el cambio
         int acumulado = 0;//inicializo lo que lleva acumulado el cambio
         int posMoneda = 0;//inicializo la posicion de la moneda a insertar en el cambio
         boolean haySol = true;//inicializo si hay solucion a true, ya habra tiempo de que se ponga a false
         while ((acumulado < cantidad) && haySol) { //si aun no hemos llegado a la cantidad y existe una moneda en la que no nos pasemos seguimos en el bucle
-            posMoneda = seleccionarMoneda(valores, cantidades, cantidad, acumulado); //escojo la moneda adecuada en cada iteracion
+            posMoneda = seleccionar (valores, cantidades, cantidad, acumulado); //escojo la moneda adecuada en cada iteracion
             if (posMoneda == -1) {//si no hay monedas disponibles no hay solucion
                 haySol    = false;//cambiamos el valor para salirnos del bucle
                 cambio[0] = -1;//devolvemos en la 1ª posicion un -1 tal y como indica el enunciado
@@ -44,26 +40,39 @@ public class CambioMinimo {
             System.out.print(cantidades[i] + " ,");
         }
         System.out.println();
-
-        return cambio;
+        return haySol;
     }//cambioMin
 
-    public static void main(String[] args) {
 
-        int[] valores = {100, 50, 20, 10, 5, 1};
-        int[] cantidades = {5, 10, 16, 25, 50, 100};
-        int cantidad = 137;//para un numero mayor que 1920 nos quedamos sin monedas para el cambio
-
-        int numMonedas = 0;
-
-        int[] cambio = cambioMin(valores, cantidades, cantidad);
-
-        System.out.println("Cambio");
-        for (int i = 0; i < cambio.length; i++) {
-            System.out.print(cambio[i] + " ,");
-            numMonedas += cambio[i];
-        }
-        System.out.println();
-        System.out.println("Número de monedas usadas: " + numMonedas);
+    public void mostrarArray (int[] array){
+        // Para mostrar la solución
+        System.out.print("[");
+        for (int i=0; i<array.length; i++)
+             System.out.print(array[i] + ", ");
+        System.out.println("]");
     }
-}
+
+    public static void main(String[] args) {
+        //TO DO: Instanciar e inicializar convenientemente los arrays siguientes:
+        int[] valores = {200, 100, 50, 20, 10, 5, 2, 1}; //Array que alamacena los valores de las diferentes monedas
+        int[] cantidades = {1, 1, 1, 1, 1, 1, 1, 1}; //Array que almacena cuantas monedas de cada valor existen
+        int[] cambio= {0,0,0,0,0,0,0,0}; //Array que almacena el resultado: el num. de monedas de cada valor que usaremos
+
+        int cantidad = 289; //Variable para almacenar el cambio que se quiere devolver
+        boolean resultado = false; //Variable para saber si hay solución al problema
+
+        AlgoritmoCambioRaya cm = new AlgoritmoCambioRaya();
+        resultado = cm.cambioMinimo(valores, cantidades, cantidad, cambio);
+        if (resultado)
+            cm.mostrarArray(cambio);
+        else
+            System.out.println("No hay solución.\n");
+
+        System.out.println("** FIN **");
+        System.out.println("** Añadido por parte de J.A Raya para comprobaciones **");
+        cm.mostrarArray((cambio));
+
+
+
+    }//main
+}//class

@@ -8,7 +8,7 @@ package Checkpoint2;
  *
  */
 
-public class AlgoritmoEspejo <Info> {
+public class AlgoritmoEspejoRaya<Info> {
 
 	public static <Info> ArbolBin<Info> algoritmoEspejoPractica (ArbolBin<Info> arbol){
 		
@@ -18,7 +18,7 @@ public class AlgoritmoEspejo <Info> {
 			return new ArbolBin<Info>(algoritmoEspejoPractica(arbol.hijoDerecho()), arbol.raiz(), algoritmoEspejoPractica(arbol.hijoIzquierdo()));
 			//la raiz se queda fija y de hijo izq le asigno el espejo del hijo derecho y al hijo derecho le asigno el espejo del hijo izquierdo
 		}
-	}
+	}//AlgoritmoEspejo
 
 	
 	public static void main(String[] args) {
