@@ -16,28 +16,19 @@ public class AlgoritmoPrimRaya<Clave, InfoVertice, Coste extends Comparable<Cost
     public void prim(Grafo<Clave, InfoVertice, Coste> g, Clave a, Lista<Par<Clave>> listaAristas) {
 
         //Inicializo las listas que voy a usar
-
         Lista<Clave> visitados = new Lista<Clave>();
-        visitados.insertar(g.listaVertices().buscar(a), a); // Ej: vistados = {A}
 
+        visitados.insertar(1, a); // Ej: vistados = {A}
         Lista<Clave> noVisitados = g.listaVertices();
         noVisitados.borrar(g.listaVertices().buscar(a)); // Ej: noVisitados = {B,C,D,E,F,G} = g.listaVertices() - visitados
 
-
         while (!noVisitados.esVacia()) {
             //mientras queden vertices por visitar sigo añadiendo a mi lista el valor minimo de los posibles
-            Par<Clave> parVistado = minimo(sucesoresPrim(g, visitados, noVisitados), g); //el par me indica el origen y destino del camino
-            //ideal para que sea minimo
-            if (!(parVistado == null)) {
-                System.out.println("arista visitada: " + parVistado.getDestino());
-                listaAristas.insertar(listaAristas.longitud() + 1, parVistado);
-                noVisitados.borrar(noVisitados.buscar(parVistado.getDestino()));
-                visitados.insertar(visitados.longitud() + 1, parVistado.getDestino());
-
-            }
-            System.out.println("se acabo");
+            Par<Clave> parVistado = minimo(sucesoresPrim(g, visitados, noVisitados), g); //el par me indica el origen y destino del par ideal de mi solución
+            listaAristas.insertar(listaAristas.longitud() + 1, parVistado); //añado el par a mi lista solucion
+            noVisitados.borrar(noVisitados.buscar(parVistado.getDestino())); //borro el destino visitado de mi lista noVisitados
+            visitados.insertar(visitados.longitud() + 1, parVistado.getDestino()); //añado el destino visitado de mi lista visitados
         }
-
     }//prim
 
     public Lista<Par<Clave>> sucesoresPrim(Grafo<Clave, InfoVertice, Coste> g, Lista<Clave> visitados, Lista<Clave> noVisitados) {
@@ -51,16 +42,9 @@ public class AlgoritmoPrimRaya<Clave, InfoVertice, Coste extends Comparable<Cost
         //En mi ejemplo en la primera iteracion devuelve (A,B),(A,D),(A,C)
         for (int i = 0; i < visitados.longitud(); i++) {//recorro los nodos visitados
             //En la 1ª iteracion solo estaria el "A"
-
-            System.out.println("visitado: " + visitados.toString());
-
             Lista<Clave> sucesoresAux = g.listaSucesores(visitados.consultar(i + 1));//lista de sucesores de un visitado
             for (int j = 0; j < sucesoresAux.longitud(); j++) { //recorro los nodos sucesores de los visitados
-
-                System.out.println("Sucesor: " + sucesoresAux.consultar(j + 1));
-
                 if (visitados.buscar(sucesoresAux.consultar(j + 1)) == 0) {//si el sucesor no esta ya en visitados
-
                     sucesoresPrim.insertar(sucesoresPrim.longitud() + 1, new Par<Clave>(visitados.consultar(i + 1), sucesoresAux.consultar(j + 1)));
                     //inserto el par en sucesoresPrim
                 }
@@ -72,20 +56,15 @@ public class AlgoritmoPrimRaya<Clave, InfoVertice, Coste extends Comparable<Cost
     private Par<Clave> minimo(Lista<Par<Clave>> sucesoresPrim, Grafo<Clave, InfoVertice, Coste> g) {
         //me devuelve el par que menos valor tenga
 
-        Par<Clave> parMinimo = sucesoresPrim.consultar(1);
-        ; //inicializo mi par minimo
+        Par<Clave> parMinimo = sucesoresPrim.consultar(1); //inicializo mi par minimo
         Par<Clave> parAux = sucesoresPrim.consultar(1); //inicializo al 1º de succesoresPrim un par auxiliar para iterar
-
         Coste coste = g.costeArista(parAux.getOrigen(), parAux.getDestino());//inicializo el coste al primer camino que vea
-        System.out.println("coste: " + coste.toString());
-
         for (int i = 0; i < sucesoresPrim.longitud(); i++) {//recorro toda la lista en busca del minimo
             parAux = sucesoresPrim.consultar(i + 1);
-            if (coste.compareTo(g.costeArista(parAux.getOrigen(), parAux.getDestino())) == 1) {
+            if (coste.compareTo(g.costeArista(parAux.getOrigen(), parAux.getDestino())) == 1) {//si es menor me quedo con él
                 parMinimo = parAux;
             }
         }
-        System.out.println("par minimo: " + parMinimo.getDestino());
         return parMinimo;
     }//minimo
 
@@ -150,7 +129,7 @@ public class AlgoritmoPrimRaya<Clave, InfoVertice, Coste extends Comparable<Cost
             total += g.costeArista(listaAristas.consultar(i + 1).getOrigen(), listaAristas.consultar(i + 1).getDestino());
 
         }
-        System.out.println("Coste total: "+total);
+        System.out.println("Coste total: " + total);
         System.out.println("=========================================");
 
 
